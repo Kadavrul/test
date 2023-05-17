@@ -1,0 +1,37 @@
+spec:
+  ports:
+    - name: service-discovery
+      protocol: TCP
+      port: 8761
+      targetPort: 8761
+  selector:
+    io.kompose.service: service-discovery
+  clusterIP: 10.233.39.253
+  clusterIPs:
+    - 10.233.39.253
+  type: ClusterIP
+  sessionAffinity: None
+  ipFamilies:
+    - IPv4
+  ipFamilyPolicy: SingleStack
+  internalTrafficPolicy: Cluster
+
+DESC:
+В данном yaml-файле описывается конфигурация для создания Kubernetes-сервиса (Service) с именем "service-discovery". Давайте разберем каждую часть описания:
+
+spec: Содержит специфическую конфигурацию для сервиса.
+ports: Определяет порт, на котором сервис будет доступен.
+name: Имя порта, в данном случае "service-discovery".
+protocol: Протокол, используемый на порту, в данном случае TCP.
+port: Внешний порт сервиса, доступный для подключения, в данном случае 8761.
+targetPort: Внутренний порт, на который будет перенаправлен трафик, в данном случае 8761.
+selector: Определяет, какие поды будут ассоциированы с этим сервисом. В данном случае, все поды с меткой io.kompose.service: service-discovery будут связаны с этим сервисом.
+clusterIP: Внутренний IP-адрес сервиса в кластере, в данном случае 10.233.39.253.
+clusterIPs: Список дополнительных внутренних IP-адресов сервиса.
+type: Тип сервиса, в данном случае ClusterIP, что означает, что сервис будет доступен только внутри кластера.
+sessionAffinity: Управление тем, как поды в сервисе устанавливают сеансовую привязку.
+ipFamilies: Семейства IP-адресов, поддерживаемые сервисом, в данном случае IPv4.
+ipFamilyPolicy: Политика использования семейств IP-адресов, в данном случае SingleStack.
+internalTrafficPolicy: Политика маршрутизации внутреннего трафика, в данном случае Cluster.
+
+Этот yaml-файл определяет сервис "service-discovery" с внешним портом 8761, который будет перенаправлять трафик на внутренний порт 8761 в подах, помеченных меткой io.kompose.service: service-discovery. Сервис будет иметь внутренний IP-адрес 10.233.39.253 и будет доступен только внутри кластера Kubernetes.
